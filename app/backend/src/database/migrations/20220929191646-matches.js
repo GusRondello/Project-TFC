@@ -15,7 +15,7 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
       references: {
-        model: 'Teams',
+        model: 'teams',
         key: 'id'
       }
     },
@@ -29,7 +29,7 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
       references: {
-        model: 'Teams',
+        model: 'teams',
         key: 'id'
       }
     },
