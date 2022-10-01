@@ -1,8 +1,8 @@
 import { ErrorRequestHandler } from 'express';
 
-const errorMiddleware: ErrorRequestHandler = (err, _req, res, next) => {
+const httpError:ErrorRequestHandler = (err, _req, res, next) => {
   const { name, message } = err;
-
+  console.log(`name: ${name}`);
   switch (name) {
     case 'ValidationError':
       res.status(400).json({ message });
@@ -11,14 +11,13 @@ const errorMiddleware: ErrorRequestHandler = (err, _req, res, next) => {
       res.status(404).json({ message });
       break;
     case 'ConflictError':
-      res.status(409).json({ message });
+      res.status(401).json({ message });
       break;
     default:
       console.error(err);
       res.sendStatus(500);
   }
-
   next();
 };
 
-export default errorMiddleware;
+export default httpError;
