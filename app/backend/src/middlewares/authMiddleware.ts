@@ -12,7 +12,7 @@ const authMiddleware = (req:Request, _res:Response, next:NextFunction) => {
 
   if (!emailRegex.test(email) || password.length <= 6) {
     const error = new Error('Incorrect email or password');
-    error.name = 'ConflictError';
+    error.name = 'UnauthorizedError';
     throw error;
   }
   next();

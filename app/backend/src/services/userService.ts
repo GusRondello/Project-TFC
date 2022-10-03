@@ -13,7 +13,7 @@ export default class UserService {
 
     if (!result || !BcryptHelper.compare(result.password, password)) {
       const error = new Error('Incorrect email or password');
-      error.name = 'ValidationError';
+      error.name = 'UnauthorizedError';
       throw error;
     }
 
