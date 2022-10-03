@@ -21,4 +21,9 @@ export default class UserService {
 
     return token;
   }
+
+  public async getRole(email: string): Promise<string> {
+    const { role } = await this.model.findOne(email);
+    return role;
+  }
 }

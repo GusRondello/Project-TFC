@@ -21,6 +21,10 @@ User.init(
       type: STRING(255),
       allowNull: false,
     },
+    role: {
+      type: STRING(255),
+      allowNull: false,
+    },
     email: {
       type: STRING(255),
       allowNull: false,

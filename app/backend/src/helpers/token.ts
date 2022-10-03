@@ -8,8 +8,8 @@ export default class TokenHelper {
     return token;
   }
 
-  public static validate(token: string): jwt.JwtPayload {
+  public static validate(token: string): string {
     const decoded = jwt.verify(token, JWT_SECRET);
-    return decoded as jwt.JwtPayload;
+    return decoded as string;
   }
 }
