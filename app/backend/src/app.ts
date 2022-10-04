@@ -12,6 +12,7 @@ class App {
 
     this.app.use('/login', router.login);
     this.app.use('/teams', router.teams);
+    this.app.use('/matches', router.matches);
     this.app.use(errorMiddleware);
 
     // Não remover essa rota
