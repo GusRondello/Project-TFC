@@ -11,6 +11,7 @@ class App {
     this.config();
 
     this.app.use('/login', router.login);
+    this.app.use('/teams', router.teams);
     this.app.use(errorMiddleware);
 
     // Não remover essa rota
