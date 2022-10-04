@@ -8,4 +8,9 @@ export default class TeamsModel {
     const result = await this.model.findAll();
     return result;
   }
+
+  public async findById(id: string | number): Promise<ITeams> {
+    const result = await this.model.findByPk(id);
+    return result as ITeams;
+  }
 }

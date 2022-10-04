@@ -12,4 +12,14 @@ export default class TeamsController {
       return next(error);
     }
   };
+
+  public findById:RequestHandler = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const result = await this.service.findById(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return next(error);
+    }
+  };
 }

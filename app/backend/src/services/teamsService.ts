@@ -8,4 +8,9 @@ export default class TeamsService {
     const result = await this.model.getAll();
     return result;
   }
+
+  public async findById(id: string): Promise<ITeams> {
+    const result = await this.model.findById(id);
+    return result as ITeams;
+  }
 }
