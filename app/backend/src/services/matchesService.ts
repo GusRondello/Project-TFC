@@ -13,4 +13,9 @@ export default class MatchesService {
     const result = await this.model.create(match);
     return result;
   }
+
+  public async endMatch(id: string): Promise<string> {
+    const result = await this.model.endMatch(id);
+    return result;
+  }
 }

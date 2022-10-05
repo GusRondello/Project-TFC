@@ -9,5 +9,6 @@ const router = Router();
 
 router.get('/', matchesController.getAll);
 router.post('/', matchesController.create);
+router.patch('/:id/finish', matchesController.endMatch);
 
 export default router;

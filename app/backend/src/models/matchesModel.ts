@@ -36,4 +36,9 @@ export default class MatchesModel {
     const result = await this.model.create({ ...match, inProgress: true });
     return result;
   }
+
+  public async endMatch(id: string): Promise<string> {
+    await this.model.update({ inProgress: false }, { where: { id } });
+    return 'Fineshed';
+  }
 }
