@@ -1,5 +1,6 @@
 import Matches from '../database/models/matchesModel';
 import Teams from '../database/models/teamsModel';
+import ICurrentMatch from '../interfaces/currentMatch.interface';
 import IMatches from '../interfaces/matches.interface';
 
 export default class MatchesModel {
@@ -47,4 +48,40 @@ export default class MatchesModel {
     await this.model.update({ inProgress: true, homeTeamGoals, awayTeamGoals }, { where: { id } });
     return 'Updated!';
   }
+
+  public async getAllHome(): Promise<ICurrentMatch[]> {
+    const result = await this.model.findAll({
+      where: { inProgress: false },
+      include: [
+        { model: Teams, as: 'teamHome', attributes: { exclude: ['id'] } },
+      ],
+    });
+
+    const homeMatches = result.map(MatchesModel.getHomeMatch);
+    return homeMatches;
+  }
+
+  public async getAllAway(): Promise<ICurrentMatch[]> {
+    const result = await this.model.findAll({
+      where: { inProgress: false },
+      include: [
+        { model: Teams, as: 'teamAway', attributes: { exclude: ['id'] } },
+      ],
+    });
+
+    const homeMatches = result.map(MatchesModel.getAwayMatch);
+    return homeMatches;
+  }
+
+  private static getHomeMatch = (match: IMatches) => ({
+    currTeamName: match.teamHome?.teamName,
+    currTeamGoals: match.homeTeamGoals,
+    oppoTeamGoals: match.awayTeamGoals,
+  });
+
+  private static getAwayMatch = (match: IMatches) => ({
+    currTeamName: match.teamAway?.teamName,
+    currTeamGoals: match.awayTeamGoals,
+    oppoTeamGoals: match.homeTeamGoals,
+  });
 }
