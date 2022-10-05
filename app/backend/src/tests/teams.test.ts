@@ -14,7 +14,7 @@ describe('Test teams routes', () => {
         before(async () => {
             chaiHttpResponse = await chai
             .request(app)
-            .get('/login')
+            .get('/teams')
         });
 
         it('Returns status code 200',async () => {
@@ -29,7 +29,7 @@ describe('Test teams routes', () => {
         before(async () => {
            chaiHttpResponse = await chai
            .request(app)
-           .get('/login/1') 
+           .get('/teams/1') 
         });
 
         

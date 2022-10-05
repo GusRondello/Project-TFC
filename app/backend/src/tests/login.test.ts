@@ -35,7 +35,8 @@ describe('Test login routes', () => {
             password: "secret_user"})
         })
         it('Returns status code 400', async () => {
-            expect(chaiHttpResponse.body).to.have.status(400);
+            
+            expect(chaiHttpResponse).to.have.status(400);
         })
         it('Returns a message', async () => {
             expect(chaiHttpResponse.body).to.have.property('message');
@@ -50,7 +51,7 @@ describe('Test login routes', () => {
             password: ""})
         })
         it('Returns status code 400', async () => {
-            expect(chaiHttpResponse.body).to.have.status(400);
+            expect(chaiHttpResponse).to.have.status(400);
         })
         it('Returns a message', async () => {
             expect(chaiHttpResponse.body).to.have.property('message');
@@ -65,7 +66,7 @@ describe('Test login routes', () => {
             password: "secret_user"})
         })
         it('Returns status code 401', async () => {
-            expect(chaiHttpResponse.body).to.have.status(401);
+            expect(chaiHttpResponse).to.have.status(401);
         })
         it('Returns a message', async () => {
             expect(chaiHttpResponse.body).to.have.property('message');
@@ -80,7 +81,7 @@ describe('Test login routes', () => {
             password: "123456"})
         })
         it('Returns status code 401', async () => {
-            expect(chaiHttpResponse.body).to.have.status(401);
+            expect(chaiHttpResponse).to.have.status(401);
         })
         it('Returns a message', async () => {
             expect(chaiHttpResponse.body).to.have.property('message');
@@ -95,7 +96,7 @@ describe('Test login routes', () => {
             password: "secret_user"})
         })
         it('Returns status code 401', async () => {
-            expect(chaiHttpResponse.body).to.have.status(401);
+            expect(chaiHttpResponse).to.have.status(401);
         })
         it('Returns a message', async () => {
             expect(chaiHttpResponse.body).to.have.property('message');
@@ -122,8 +123,8 @@ describe('Test login routes', () => {
             .request(app)
             .get('/login/validate')
             .set('authorization', chaiHttpResponse.body.token);
-
-            expect(validateResponse).to.have.property('role');
+            
+            expect(validateResponse.body).to.have.property('role');
         });
     });
     describe('GET: /login/validate invalid token', () => {
@@ -131,13 +132,13 @@ describe('Test login routes', () => {
             chaiHttpResponse = await chai
             .request(app)
             .get('/login/validate')
-            .set('authorization', 'invalidToken')
+            .set('authorization', '')
         });
         it('Returns status code 401', async () => {
             expect(chaiHttpResponse).to.have.status(401);
         });
         it('Returns a message', async () => {
-            expect(chaiHttpResponse).to.have.property('message');
+             expect(chaiHttpResponse.body).to.have.property('message');
         });
     });
 });
