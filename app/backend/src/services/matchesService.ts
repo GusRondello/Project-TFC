@@ -18,4 +18,9 @@ export default class MatchesService {
     const result = await this.model.endMatch(id);
     return result;
   }
+
+  public async updateMatch(match: IMatches): Promise<string> {
+    const result = await this.model.updateMatch(match);
+    return result;
+  }
 }
