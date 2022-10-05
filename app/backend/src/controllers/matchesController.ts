@@ -14,12 +14,6 @@ export default class MatchesController {
   };
 
   public create: RequestHandler = async (req, res, next) => {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      const error = new Error('Token must be a valid token');
-      error.name = 'UnauthorizedError';
-      return next(error);
-    }
     try {
       const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
       const newMatch = { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals };

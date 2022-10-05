@@ -9,7 +9,11 @@ export default class TokenHelper {
   }
 
   public static validate(token: string): string {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    return decoded as string;
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      return decoded as string;
+    } catch (error) {
+      return '';
+    }
   }
 }
