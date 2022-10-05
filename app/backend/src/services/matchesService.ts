@@ -8,4 +8,9 @@ export default class MatchesService {
     const result = await this.model.getAll();
     return result;
   }
+
+  public async create(match: IMatches): Promise<IMatches> {
+    const result = await this.model.create(match);
+    return result;
+  }
 }

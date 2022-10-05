@@ -17,4 +17,23 @@ export default class MatchesModel {
       ] });
     return result;
   }
+
+  public async create(match: IMatches): Promise<IMatches> {
+    if (match.homeTeam === match.awayTeam) {
+      const error = new Error('It is not possible to create a match with two equal teams');
+      error.name = 'UnauthorizedError';
+      throw error;
+    }
+    const getHomeTeam = await this.model.findByPk(match.homeTeam);
+    const getAwayTeam = await this.model.findByPk(match.awayTeam);
+
+    if (!getHomeTeam || !getAwayTeam) {
+      const error = new Error('There is no team with such id!');
+      error.name = 'NotFoundError';
+      throw error;
+    }
+
+    const result = await this.model.create({ ...match, inProgress: true });
+    return result;
+  }
 }
