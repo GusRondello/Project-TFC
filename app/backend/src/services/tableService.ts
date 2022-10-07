@@ -20,6 +20,19 @@ export default class BoardService {
     return sortedBoard;
   }
 
+  public async getAllAway() : Promise<IBoard[]> {
+    const matches = await this.matchesModel.getAllAway();
+
+    const teams = await this.teamModel.getAll();
+    const newBoard = teams.filter((team) => matches
+      .some((match) => match.currTeamName === team.teamName))
+      .map(BoardService.createTeamBoard);
+
+    const leaderboard = BoardService.createLeaderboard(newBoard, matches);
+    const sortedBoard = BoardService.sortLeaderboard(leaderboard);
+    return sortedBoard;
+  }
+
   private static createTeamBoard = (team: ITeams) => ({
     name: team.teamName,
     totalPoints: 0,

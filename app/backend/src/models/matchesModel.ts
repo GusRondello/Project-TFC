@@ -69,8 +69,8 @@ export default class MatchesModel {
       ],
     });
 
-    const homeMatches = result.map(MatchesModel.getAwayMatch);
-    return homeMatches;
+    const awayMatches = result.map(MatchesModel.getAwayMatch);
+    return awayMatches;
   }
 
   private static getHomeMatch = (match: IMatches) => ({

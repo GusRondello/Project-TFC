@@ -14,5 +14,6 @@ const boardController = new BoardController(new BoardService(
 ));
 
 router.get('/home', boardController.getAllHome);
+router.get('/away', boardController.getAllAway);
 
 export default router;

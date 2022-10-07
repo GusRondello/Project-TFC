@@ -12,4 +12,13 @@ export default class BoardController {
       next(error);
     }
   };
+
+  public getAllAway:RequestHandler = async (_req, res, next) => {
+    try {
+      const result = await this.service.getAllAway();
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
