@@ -21,4 +21,13 @@ export default class BoardController {
       next(error);
     }
   };
+
+  public getAll:RequestHandler = async (_req, res, next) => {
+    try {
+      const result = await this.service.getAll();
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
