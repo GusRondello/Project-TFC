@@ -2,7 +2,6 @@ import { ErrorRequestHandler } from 'express';
 
 const httpError:ErrorRequestHandler = (err, _req, res, next) => {
   const { name, message } = err;
-  console.log(`name: ${name}`);
   switch (name) {
     case 'ValidationError':
       res.status(400).json({ message });

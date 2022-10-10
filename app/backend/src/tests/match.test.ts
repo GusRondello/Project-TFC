@@ -8,7 +8,7 @@ import chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const { expect } = chai;
 
-describe.only('Test Matches routes', () => { 
+describe('Test Matches routes', () => { 
     let chaiHttpResponse: Response;
 
     describe('GET: /matches returns matches', () => {
